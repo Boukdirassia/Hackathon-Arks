@@ -1,11 +1,26 @@
-import React from 'react'
-import { Outlet } from 'react-router'
+import { Navigate, Outlet } from 'react-router';
+import { useAuth } from '../contexts/AuthContext';
 
 const Default = () => {
-  console.log("default");
-  return (
-    <Outlet />
-  )
-}
+  const { user, loading } = useAuth();
 
-export default Default
+  if (loading) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/auth/login" replace />;
+  }
+
+  return (
+    <div className="min-h-screen">
+      <Outlet />
+    </div>
+  );
+};
+
+export default Default;
