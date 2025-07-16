@@ -3,6 +3,7 @@ import Default from "./layouts/Default";
 import Guest from "./layouts/Guest";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
 const router = createBrowserRouter([
   {
     // for auth users
@@ -10,8 +11,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Home</div>,
+        element: <div  className="text-red-500">Home</div>,
+
       },
+      {
+        path: "/dashboard-user",
+        element:<HomeDashboard/>,
+      }
     ],
   },
 
