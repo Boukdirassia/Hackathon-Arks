@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Default from "./layouts/Default";
 import Guest from "./layouts/Guest";
+import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
 const router = createBrowserRouter([
   {
     // for auth users
@@ -9,7 +10,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <div>Home</div>,
+
       },
+      {
+        path: "/dashboard-user",
+        element:<HomeDashboard/>,
+      }
     ],
   },
 
