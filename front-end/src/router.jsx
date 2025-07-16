@@ -12,14 +12,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
+
   {
     // for guests
     element: <Guest />,
     children: [
       {
         path: "/hello",
-        element: <div>hello</div>,
+        element: <div className="bg-red-500">hello</div>,
       },
     ],
   },
