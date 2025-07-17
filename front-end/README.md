@@ -1,11 +1,62 @@
-# React + Vite
+# MoBoe - Movie Discovery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for discovering and managing movies, built for the hackathon.
 
-Currently, two official plugins are available:
+## Team Members
+- Youssef Charroud (Team Leader)
+- Amine Haddade  
+- Assia Iboukdir
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- 🎬 Movie discovery with beautiful cards
+- 📱 Responsive design
+- ⭐ Movie ratings and reviews
+- 🔍 Search and filtering
+- 💾 Watchlist management
+- 🎨 Modern UI with Tailwind CSS
+
+## Tech Stack
+- React 19
+- Vite
+- Tailwind CSS
+- Shadcn/ui Components
+- Lucide React Icons
+- React Router
+
+## Getting Started
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Start development server:
+```bash
+npm run dev
+```
+
+3. Build for production:
+```bash
+npm run build
+```
+
+## Project Structure
+```
+src/
+├── components/
+│   ├── ui/           # Shadcn UI components
+│   └── MovieCard.jsx # Movie card component
+├── data/
+│   └── movies.json   # Movie data
+├── layouts/
+│   ├── Default.jsx   # Default layout
+│   └── Guest.jsx     # Guest layout
+├── pages/
+│   └── LandingPageComplete.jsx # Main landing page
+├── App.jsx
+├── main.jsx
+└── router.jsx
+```
 
 ## Expanding the ESLint configuration
 
