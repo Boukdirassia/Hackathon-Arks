@@ -5,7 +5,7 @@ A modern React application for discovering and managing movies, built for the ha
 ## Team Members
 - Youssef Charroud (Team Leader)
 - Amine Haddade  
-- Assia Iboukdir
+- Assia Boukdir
 
 ## Features
 - 🎬 Movie discovery with beautiful cards
