@@ -5,6 +5,9 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
 import LandingPageComplete from './pages/LandingPageComplete';
+import MoviesDiscovery from './pages/MoviesDiscovery';
+import MovieDetails from './pages/MovieDetails';
+import Watchlist from './pages/Watchlist';
 const router = createBrowserRouter([
   {
     // for auth users
@@ -13,6 +16,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPageComplete />,
+      },
+      {
+        path: "/movies",
+        element: <MoviesDiscovery />,
+      },
+      {
+        path: "/movie/:id",
+        element: <MovieDetails />,
+      },
+      {
+        path: "/watchlist",
+        element: <Watchlist />,
       },
       {
         path: "/dashboard-user",
