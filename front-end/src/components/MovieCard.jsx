@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Star, Play, Heart, Bookmark, Eye } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -7,8 +8,9 @@ import { Button } from './ui/button';
  * @param {Object} movie - Movie data (title, poster, rating, genre, etc.)
  * @param {string} size - Card size: 'small' | 'default' | 'large'
  * @param {boolean} showOverview - Show movie overview text
+ * @param {boolean} disableLink - Disable navigation to movie details
  */
-const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
+const MovieCard = ({ movie, size = 'default', showOverview = false, disableLink = false }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isWatched, setIsWatched] = useState(false);
@@ -23,32 +25,60 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
 
   const [imageError, setImageError] = useState(false);
 
+  // Load saved interactions on component mount
+  useEffect(() => {
+    const interactions = JSON.parse(localStorage.getItem('movieInteractions') || '{}');
+    const movieInteractions = interactions[movie.id] || {};
+    
+    setIsLiked(movieInteractions.liked || false);
+    setIsBookmarked(movieInteractions.bookmarked || false);
+    setIsWatched(movieInteractions.watched || false);
+  }, [movie.id]);
+
   const handleImageError = (e) => {
     setImageError(true);
     e.target.style.display = 'none';
   };
 
+  const saveInteraction = (interactionType, value) => {
+    const interactions = JSON.parse(localStorage.getItem('movieInteractions') || '{}');
+    const movieInteractions = interactions[movie.id] || {};
+    
+    movieInteractions[interactionType] = value;
+    movieInteractions.dateAdded = movieInteractions.dateAdded || new Date().toISOString();
+    
+    interactions[movie.id] = movieInteractions;
+    localStorage.setItem('movieInteractions', JSON.stringify(interactions));
+  };
+
   const handleLike = (e) => {
     e.stopPropagation();
-    setIsLiked(!isLiked);
+    const newLikedState = !isLiked;
+    setIsLiked(newLikedState);
+    saveInteraction('liked', newLikedState);
   };
 
   const handleBookmark = (e) => {
     e.stopPropagation();
-    setIsBookmarked(!isBookmarked);
+    const newBookmarkedState = !isBookmarked;
+    setIsBookmarked(newBookmarkedState);
+    saveInteraction('bookmarked', newBookmarkedState);
   };
 
   const handleWatched = (e) => {
     e.stopPropagation();
-    setIsWatched(!isWatched);
+    const newWatchedState = !isWatched;
+    setIsWatched(newWatchedState);
+    saveInteraction('watched', newWatchedState);
   };
 
-  return (
+  const cardContent = (
     <div className={`
       group relative overflow-hidden rounded-xl
       bg-gradient-to-br from-black via-red-950 to-black
       transition-all duration-500 hover:scale-105
       shadow-lg hover:shadow-2xl hover:shadow-red-500/20
+      ${disableLink ? '' : 'cursor-pointer'}
       ${currentSize.width} ${currentSize.height}
     `}>
       
@@ -96,7 +126,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
               transition-all duration-300 shadow-lg
               ${isLiked 
                 ? 'bg-red-500/90 text-white' 
-                : 'bg-white/20 text-white hover:bg-red-500/90'
+                : 'bg-white/90 text-black hover:bg-red-500 hover:text-white'
               }
             `}
           >
@@ -111,7 +141,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
               transition-all duration-300 shadow-lg
               ${isBookmarked 
                 ? 'bg-blue-500/90 text-white' 
-                : 'bg-white/20 text-white hover:bg-blue-500/90'
+                : 'bg-white/90 text-black hover:bg-blue-500 hover:text-white'
               }
             `}
           >
@@ -126,7 +156,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
               transition-all duration-300 shadow-lg
               ${isWatched 
                 ? 'bg-green-500/90 text-white' 
-                : 'bg-white/20 text-white hover:bg-green-500/90'
+                : 'bg-white/90 text-black hover:bg-red-600 hover:text-white'
               }
             `}
           >
@@ -198,14 +228,20 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
         </div>
       </div>
 
-      <div className="
-        absolute inset-0 rounded-2xl
-        bg-gradient-to-r from-red-500/10 via-red-600/10 to-red-700/10
-        opacity-0 group-hover:opacity-100
-        transition-opacity duration-500
-        pointer-events-none
-      " />
+        <div className="
+          absolute inset-0 rounded-2xl
+          bg-gradient-to-r from-red-500/10 via-red-600/10 to-red-700/10
+          opacity-0 group-hover:opacity-100
+          transition-opacity duration-500
+          pointer-events-none
+        " />
     </div>
+  );
+
+  return disableLink ? cardContent : (
+    <Link to={`/movie/${movie.id}`} className="block">
+      {cardContent}
+    </Link>
   );
 };
 

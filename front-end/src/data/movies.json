@@ -165,11 +165,13 @@
   ],
   "featuredMovies": [1, 2, 3],
   "genres": [
-    { "name": "Action", "count": "2.5K+", "color": "from-red-500 to-red-700" },
-    { "name": "Drama", "count": "1.8K+", "color": "from-red-600 to-red-800" },
-    { "name": "Comedy", "count": "1.2K+", "color": "from-red-400 to-red-600" },
-    { "name": "Thriller", "count": "900+", "color": "from-red-700 to-red-900" },
-    { "name": "Sci-Fi", "count": "750+", "color": "from-red-500 to-red-800" },
-    { "name": "Romance", "count": "650+", "color": "from-red-300 to-red-500" }
+    { "name": "Action", "count": 9, "color": "from-red-500 to-red-700" },
+    { "name": "Drama", "count": 11, "color": "from-red-600 to-red-800" },
+    { "name": "Sci-Fi", "count": 8, "color": "from-red-500 to-red-800" },
+    { "name": "Crime", "count": 4, "color": "from-red-700 to-red-900" },
+    { "name": "Thriller", "count": 3, "color": "from-red-400 to-red-600" },
+    { "name": "Adventure", "count": 6, "color": "from-red-300 to-red-500" },
+    { "name": "Romance", "count": 2, "color": "from-red-200 to-red-400" },
+    { "name": "Comedy", "count": 2, "color": "from-red-300 to-red-600" }
   ]
 }
