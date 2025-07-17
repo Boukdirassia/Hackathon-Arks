@@ -1,0 +1,175 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Inception",
+      "year": 2010,
+      "genre": ["Sci-Fi", "Thriller"],
+      "rating": 8.8,
+      "poster": "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
+      "overview": "A skilled thief leads a team into people's dreams to steal secrets from the subconscious."
+    },
+    {
+      "id": 2,
+      "title": "The Dark Knight",
+      "year": 2008,
+      "genre": ["Action", "Crime", "Drama"],
+      "rating": 9.0,
+      "poster": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      "overview": "Batman faces his greatest challenge as the Joker wreaks havoc on Gotham City."
+    },
+    {
+      "id": 3,
+      "title": "Interstellar",
+      "year": 2014,
+      "genre": ["Sci-Fi", "Drama"],
+      "rating": 8.6,
+      "poster": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      "overview": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival."
+    },
+    {
+      "id": 4,
+      "title": "Pulp Fiction",
+      "year": 1994,
+      "genre": ["Crime", "Drama"],
+      "rating": 8.9,
+      "poster": "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
+      "overview": "The lives of two mob hitmen, a boxer, a gangster and his wife intertwine in four tales of violence and redemption."
+    },
+    {
+      "id": 5,
+      "title": "The Matrix",
+      "year": 1999,
+      "genre": ["Action", "Sci-Fi"],
+      "rating": 8.7,
+      "poster": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+      "overview": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers."
+    },
+    {
+      "id": 6,
+      "title": "Forrest Gump",
+      "year": 1994,
+      "genre": ["Drama", "Romance"],
+      "rating": 8.8,
+      "poster": "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
+      "overview": "The presidencies of Kennedy and Johnson, the Vietnam War, and other historical events unfold from the perspective of an Alabama man."
+    },
+    {
+      "id": 7,
+      "title": "The Godfather",
+      "year": 1972,
+      "genre": ["Crime", "Drama"],
+      "rating": 9.2,
+      "poster": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+      "overview": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son."
+    },
+    {
+      "id": 8,
+      "title": "Avengers: Endgame",
+      "year": 2019,
+      "genre": ["Action", "Adventure", "Sci-Fi"],
+      "rating": 8.4,
+      "poster": "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+      "overview": "After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos' actions and restore balance to the universe."
+    },
+    {
+      "id": 9,
+      "title": "Titanic",
+      "year": 1997,
+      "genre": ["Drama", "Romance"],
+      "rating": 7.9,
+      "poster": "https://image.tmdb.org/t/p/w500/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+      "overview": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic."
+    },
+    {
+      "id": 10,
+      "title": "Avatar",
+      "year": 2009,
+      "genre": ["Action", "Adventure", "Sci-Fi"],
+      "rating": 7.8,
+      "poster": "https://image.tmdb.org/t/p/w500/jRXYjXNq0Cs2TcJjLkki24MLp7u.jpg",
+      "overview": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home."
+    },
+    {
+      "id": 11,
+      "title": "Joker",
+      "year": 2019,
+      "genre": ["Crime", "Drama", "Thriller"],
+      "rating": 8.4,
+      "poster": "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+      "overview": "In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime."
+    },
+    {
+      "id": 12,
+      "title": "Spider-Man: No Way Home",
+      "year": 2021,
+      "genre": ["Action", "Adventure", "Sci-Fi"],
+      "rating": 8.2,
+      "poster": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      "overview": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear."
+    },
+    {
+      "id": 13,
+      "title": "The Lion King",
+      "year": 1994,
+      "genre": ["Animation", "Adventure", "Drama"],
+      "rating": 8.5,
+      "poster": "https://image.tmdb.org/t/p/w500/sKCr78MXSLixwmZ8DyJLrpMsd15.jpg",
+      "overview": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself."
+    },
+    {
+      "id": 14,
+      "title": "Black Panther",
+      "year": 2018,
+      "genre": ["Action", "Adventure", "Sci-Fi"],
+      "rating": 7.3,
+      "poster": "https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
+      "overview": "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future."
+    },
+    {
+      "id": 15,
+      "title": "Parasite",
+      "year": 2019,
+      "genre": ["Comedy", "Drama", "Thriller"],
+      "rating": 8.5,
+      "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+      "overview": "A poor family schemes to become employed by a wealthy family by infiltrating their household and posing as unrelated, highly qualified individuals."
+    },
+    {
+      "id": 16,
+      "title": "Dune",
+      "year": 2021,
+      "genre": ["Action", "Adventure", "Drama", "Sci-Fi"],
+      "rating": 8.0,
+      "poster": "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+      "overview": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe."
+    },
+    {
+      "id": 17,
+      "title": "Top Gun: Maverick",
+      "year": 2022,
+      "genre": ["Action", "Drama"],
+      "rating": 8.3,
+      "poster": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+      "overview": "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN's elite graduates on a mission."
+    },
+    {
+      "id": 18,
+      "title": "Everything Everywhere All at Once",
+      "year": 2022,
+      "genre": ["Action", "Adventure", "Comedy", "Sci-Fi"],
+      "rating": 7.8,
+      "poster": "https://image.tmdb.org/t/p/w500/w3LxiVYEA4kEKcsl9RYmHSqQoQd.jpg",
+      "overview": "An aging Chinese immigrant is swept up in an insane adventure, where she alone can save what's important to her by connecting with the lives she could have led."
+    }
+  ],
+  "featuredMovies": [1, 2, 3],
+  "genres": [
+    { "name": "Action", "count": "2.5K+", "color": "from-red-500 to-orange-500" },
+    { "name": "Drama", "count": "1.8K+", "color": "from-blue-500 to-purple-500" },
+    { "name": "Comedy", "count": "1.2K+", "color": "from-yellow-500 to-pink-500" },
+    { "name": "Thriller", "count": "900+", "color": "from-purple-500 to-red-500" },
+    { "name": "Sci-Fi", "count": "750+", "color": "from-cyan-500 to-blue-500" },
+    { "name": "Romance", "count": "650+", "color": "from-pink-500 to-red-500" }
+  ]
+}

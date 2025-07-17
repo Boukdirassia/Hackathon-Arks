@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Default from "./layouts/Default";
 import Guest from "./layouts/Guest";
 import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
+import LandingPageComplete from './pages/LandingPageComplete';
 const router = createBrowserRouter([
   {
     // for auth users
@@ -9,8 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div  className="text-red-500">Home</div>,
-
+        element: <LandingPageComplete />,
       },
       {
         path: "/dashboard-user",
