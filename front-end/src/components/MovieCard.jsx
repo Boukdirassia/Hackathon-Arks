@@ -21,8 +21,11 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
 
   const currentSize = sizeConfig[size];
 
+  const [imageError, setImageError] = useState(false);
+
   const handleImageError = (e) => {
-    e.target.src = `https://via.placeholder.com/400x600/1f2937/ffffff?text=${encodeURIComponent(movie.title)}`;
+    setImageError(true);
+    e.target.style.display = 'none';
   };
 
   const handleLike = (e) => {
@@ -43,25 +46,33 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
   return (
     <div className={`
       group relative overflow-hidden rounded-xl
-      bg-gradient-to-br from-black via-gray-900 to-black
-      border border-red-500/20 hover:border-red-500/60
+      bg-gradient-to-br from-black via-red-950 to-black
       transition-all duration-500 hover:scale-105
-      shadow-lg hover:shadow-2xl hover:shadow-red-500/30
-      red-glow-border
+      shadow-lg hover:shadow-2xl hover:shadow-red-500/20
       ${currentSize.width} ${currentSize.height}
     `}>
       
       <div className="relative h-3/5 overflow-hidden rounded-t-2xl">
-        <img
-          src={movie.poster}
-          alt={`${movie.title} poster`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          onError={handleImageError}
-        />
+        {!imageError ? (
+          <img
+            src={movie.poster}
+            alt={`${movie.title} poster`}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={handleImageError}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-red-900 via-red-950 to-black flex items-center justify-center">
+            <div className="text-center p-4">
+              <div className="text-6xl mb-4 text-red-500/60">🎬</div>
+              <h3 className="text-white font-bold text-lg leading-tight">{movie.title}</h3>
+              <p className="text-red-300 text-sm mt-2">{movie.year}</p>
+            </div>
+          </div>
+        )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-red-900/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-red-950/20 to-transparent" />
         
-        <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-red-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-red-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button 
             size="lg" 
             className="
@@ -99,8 +110,8 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
               flex items-center justify-center
               transition-all duration-300 shadow-lg
               ${isBookmarked 
-                ? 'bg-red-500/90 text-white' 
-                : 'bg-white/20 text-white hover:bg-red-500/90'
+                ? 'bg-blue-500/90 text-white' 
+                : 'bg-white/20 text-white hover:bg-blue-500/90'
               }
             `}
           >
@@ -125,7 +136,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
 
         {/* === RATING BADGE === */}
         <div className="absolute top-4 left-4 bg-black/90 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center space-x-1 border border-red-500/30 shadow-lg">
-          <Star className="h-4 w-4 text-red-400 fill-current" />
+          <Star className="h-4 w-4 text-yellow-400 fill-current" />
           <span className="text-white text-sm font-semibold">{movie.rating}</span>
         </div>
       </div>
@@ -161,7 +172,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
         </div>
 
         {showOverview && (
-          <p className="text-gray-300 text-sm line-clamp-2 leading-relaxed mb-3">
+          <p className="text-white/70 text-sm line-clamp-2 leading-relaxed mb-3">
             {movie.overview}
           </p>
         )}
@@ -171,14 +182,14 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
             <div className="flex items-center space-x-2">
               <div className="flex items-center space-x-1">
                 <Star className="h-3 w-3 text-yellow-400 fill-current" />
-                <span className="text-slate-300 text-xs">{movie.rating}</span>
+                <span className="text-white/70 text-xs">{movie.rating}</span>
               </div>
             </div>
             <div className={`
               px-2 py-1 rounded-full text-xs font-medium
               ${isWatched 
                 ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
-                : 'bg-slate-700/50 text-slate-400 border border-slate-600/30'
+                : 'bg-black/50 text-white/60 border border-red-900/30'
               }
             `}>
               {isWatched ? 'Watched' : 'Not Watched'}
@@ -189,7 +200,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false }) => {
 
       <div className="
         absolute inset-0 rounded-2xl
-        bg-gradient-to-r from-red-500/10 via-pink-500/10 to-purple-500/10
+        bg-gradient-to-r from-red-500/10 via-red-600/10 to-red-700/10
         opacity-0 group-hover:opacity-100
         transition-opacity duration-500
         pointer-events-none

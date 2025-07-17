@@ -9,19 +9,9 @@ import {
 
 const LandingPageComplete = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Get featured movies from JSON data
-  const featuredMovies = moviesData.featuredMovies.map(id => 
-    moviesData.movies.find(movie => movie.id === id)
-  );
 
-  const stats = [
-    { icon: Film, value: "10K+", label: "Movies" },
-    { icon: Users, value: "50K+", label: "Users" },
-    { icon: Star, value: "4.8", label: "Rating" },
-    { icon: TrendingUp, value: "99%", label: "Uptime" }
-  ];
+
 
   // Get movie categories from JSON data with icons
   const movieCategories = moviesData.genres.map(genre => ({
@@ -81,18 +71,13 @@ const LandingPageComplete = () => {
     }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredMovies.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [featuredMovies.length]);
+
 
   return (
     <>
       <div className="relative min-h-screen overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-red-900 animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900 via-black to-red-800 animate-pulse"></div>
           
           <video
             className={`w-full h-full object-cover transition-opacity duration-1000 ${
@@ -109,9 +94,9 @@ const LandingPageComplete = () => {
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
           </video>
           
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-black/20"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-pink-900/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-red-900/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-transparent to-red-900/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 via-transparent to-red-800/30"></div>
         </div>
 
         {/* Navigation */}
@@ -157,7 +142,7 @@ const LandingPageComplete = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg"
+                  className="border-white/30 text-black hover:bg-black/10 px-8 py-4 text-lg"
                 >
                   <Search className="mr-2 h-5 w-5" />
                   Browse Movies
@@ -165,77 +150,17 @@ const LandingPageComplete = () => {
               </div>
             </div>
 
-            <div className="backdrop-blur-fallback rounded-2xl p-6 border border-white/20 animate-slide-in-up hover:border-red-500/30 transition-all duration-300">
-              <h3 className="text-white text-lg font-semibold mb-4 flex items-center">
-                <Film className="h-5 w-5 mr-2 text-red-500" />
-                Featured This Week
-              </h3>
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <h4 className="text-white text-xl font-bold mb-2 animate-glow">
-                    {featuredMovies[currentSlide].title}
-                  </h4>
-                  <p className="text-white/70 mb-3 leading-relaxed">
-                    {featuredMovies[currentSlide].overview}
-                  </p>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1 bg-yellow-500/20 px-2 py-1 rounded-full">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="text-white font-semibold text-sm">
-                        {featuredMovies[currentSlide].rating}
-                      </span>
-                    </div>
-                    <span className="text-white/60 bg-white/10 px-2 py-1 rounded-full text-sm">
-                      {featuredMovies[currentSlide].year}
-                    </span>
-                    <div className="flex flex-wrap gap-1">
-                      {featuredMovies[currentSlide].genre.slice(0, 2).map((genre, index) => (
-                        <span key={index} className="text-xs bg-red-500/20 text-red-300 px-2 py-1 rounded-full">
-                          {genre}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Slide Indicators */}
-                <div className="flex flex-col space-y-2 ml-6">
-                  {featuredMovies.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`w-2 h-2 rounded-full transition-all hover:scale-125 ${
-                        index === currentSlide ? 'bg-red-500 w-8 animate-glow' : 'bg-white/30 hover:bg-white/50'
-                      }`}
-                      onClick={() => setCurrentSlide(index)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div className="relative z-10 px-6 lg:px-12 pb-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl">
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center hover:bg-white/10 transition-all duration-300"
-              >
-                <stat.icon className="h-8 w-8 text-red-500 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-white/60 text-sm">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         <div className="absolute top-1/4 right-10 w-20 h-20 bg-red-500/20 rounded-full blur-xl animate-float"></div>
-        <div className="absolute bottom-1/4 left-10 w-32 h-32 bg-pink-500/20 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-blue-500/20 rounded-full blur-xl animate-float" style={{animationDelay: '4s'}}></div>
-        <div className="absolute top-3/4 left-1/3 w-24 h-24 bg-purple-500/20 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-yellow-500/20 rounded-full blur-xl animate-float" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-1/4 left-10 w-32 h-32 bg-red-600/15 rounded-full blur-xl animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-red-400/25 rounded-full blur-xl animate-float" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-3/4 left-1/3 w-24 h-24 bg-red-700/20 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 left-1/4 w-12 h-12 bg-red-300/20 rounded-full blur-xl animate-float" style={{animationDelay: '3s'}}></div>
         
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(20)].map((_, i) => (
@@ -253,7 +178,7 @@ const LandingPageComplete = () => {
         </div>
       </div>
 
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="py-20 bg-gradient-to-b from-black to-red-950">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -282,7 +207,7 @@ const LandingPageComplete = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="py-20 bg-gradient-to-b from-red-950 to-black">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -293,8 +218,8 @@ const LandingPageComplete = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 md:gap-16 lg:gap-20 xl:gap-24">
-            {moviesData.movies.slice(0, 10).map((movie, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-8 max-w-6xl mx-auto">
+            {moviesData.movies.slice(0, 8).map((movie, index) => (
               <div
                 key={movie.id}
                 className="animate-slide-in-up"
@@ -316,38 +241,82 @@ const LandingPageComplete = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">MoBoe</span>?
+      <section className="py-20 bg-gradient-to-br from-black via-red-950 to-black relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(239,68,68,0.1),transparent_50%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(239,68,68,0.08),transparent_50%)] pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+          {/* Enhanced Header */}
+          <div className="text-center mb-20">
+            <div className="inline-block mb-4">
+              <span className="px-4 py-2 bg-red-600/20 border border-red-500/30 rounded-full text-red-400 text-sm font-semibold tracking-wide uppercase">
+                Why Choose Us
+              </span>
+            </div>
+            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              Discover Why <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-red-400 animate-pulse">
+                MoBoe Stands Out
+              </span>
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Experience the future of movie discovery with our cutting-edge features
+            <p className="text-xl text-white/60 max-w-3xl mx-auto leading-relaxed">
+              Experience the next generation of movie discovery with our revolutionary features designed for true cinema enthusiasts
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Enhanced Features Grid */}
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 hover:border-red-500/30 transition-all duration-300 hover:scale-105 animate-slide-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-white/5 via-white/10 to-red-500/5 backdrop-blur-xl border border-white/10 hover:border-red-500/40 transition-all duration-500 hover:scale-[1.02] animate-slide-in-up overflow-hidden"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <feature.icon className="h-8 w-8 text-white" />
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/0 via-red-500/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <div className="flex items-start space-x-6">
+                    {/* Enhanced Icon */}
+                    <div className="flex-shrink-0">
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg shadow-red-500/20">
+                        <feature.icon className="h-10 w-10 text-white" />
+                      </div>
+                    </div>
+                    
+                    {/* Text Content */}
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-red-300 transition-colors">
+                        {feature.title}
+                      </h3>
+                      <p className="text-white/70 leading-relaxed text-lg group-hover:text-white/80 transition-colors">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Animated Arrow */}
+                      <div className="mt-6 flex items-center text-red-400 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2">
+                        <span className="text-sm font-semibold mr-2">Learn More</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                  <p className="text-white/70 leading-relaxed">{feature.description}</p>
                 </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-red-500/10 to-pink-500/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section className="py-20 bg-gradient-to-b from-black to-red-900">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -362,11 +331,11 @@ const LandingPageComplete = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 hover:border-yellow-500/30 transition-all duration-300 hover:scale-105"
+                className="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 hover:border-red-500/30 transition-all duration-300 hover:scale-105"
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="h-5 w-5 text-red-400 fill-current" />
                   ))}
                 </div>
                 <p className="text-white/80 mb-6 leading-relaxed italic">
@@ -387,30 +356,102 @@ const LandingPageComplete = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <div className="p-12 rounded-3xl bg-gradient-to-br from-red-500/20 to-pink-500/20 backdrop-blur-sm border border-red-500/30">
+      {/* Pricing Section */}
+      <section className="py-20 bg-gradient-to-b from-red-900 to-black">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Ready to Start Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">
-                Movie Journey?
-              </span>
+              MoBoe <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500">Pricing</span>
             </h2>
-            <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
-              Join MoBoe today and discover your next favorite movie with our intelligent recommendation system.
+            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+              Choose the perfect plan for your movie experience
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg animate-glow">
-                <Play className="mr-2 h-5 w-5" />
-                Get Started Free
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Basic Plan */}
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:border-red-500/30 transition-all duration-300 hover:scale-105">
+              <h3 className="text-2xl font-bold text-white mb-2">Basic</h3>
+              <div className="text-4xl font-bold text-white mb-6">
+                Free
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Originals</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Switch plans anytime</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/50 line-through">Download and watch anytime</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/50 line-through">Live TV in Full HD</span>
+                </div>
+              </div>
+              
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold">
+                REGISTER NOW
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white/30 text-black hover:bg-white/10 px-8 py-4 text-lg"
-              >
-                Learn More
+            </div>
+
+            {/* Premium Plan */}
+            <div className="bg-gradient-to-br from-red-500/20 to-pink-500/20 backdrop-blur-sm border border-red-500/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all duration-300 hover:scale-105 relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-semibold">POPULAR</span>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-white mb-2">Premium</h3>
+              <div className="text-4xl font-bold text-white mb-2">
+                $25.99 <span className="text-lg text-white/60">/month</span>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Originals</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Switch plans anytime</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Download and watch offline</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">No ad interruptions</span>
+                </div>
+              </div>
+              
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold">
+                REGISTER NOW
               </Button>
+            </div>
+
+            {/* VIP Plan */}
+            <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:border-red-500/30 transition-all duration-300 hover:scale-105">
+              <h3 className="text-2xl font-bold text-white mb-2">VIP</h3>
+              <div className="text-4xl font-bold text-white mb-2">
+                $45.99 <span className="text-lg text-white/60">/month</span>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Originals</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Switch plans anytime</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">No ad interruptions</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-white/80">Up to 20 devices</span>
+                </div>
+              </div>
+              
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white py-3 text-lg font-semibold">
+                REGISTER NOW
+                </Button>
             </div>
           </div>
         </div>
