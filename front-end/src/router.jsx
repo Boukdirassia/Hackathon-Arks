@@ -6,8 +6,6 @@ import RegisterPage from "./pages/RegisterPage";
 import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
 import LandingPageComplete from "./pages/LandingPageComplete";
 import ChatPage from "./pages/ChatPage";
-
-import LandingPageComplete from './pages/LandingPageComplete';
 import MoviesDiscovery from './pages/MoviesDiscovery';
 import MovieDetails from './pages/MovieDetails';
 import Watchlist from './pages/Watchlist';
