@@ -4,6 +4,9 @@ import Guest from "./layouts/Guest";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomeDashboard from "./components/ui/DashboardUser/HomeDashboard";
+import LandingPageComplete from "./pages/LandingPageComplete";
+import ChatPage from "./pages/ChatPage";
+
 import LandingPageComplete from './pages/LandingPageComplete';
 import MoviesDiscovery from './pages/MoviesDiscovery';
 import MovieDetails from './pages/MovieDetails';
@@ -17,6 +20,8 @@ const router = createBrowserRouter([
         path: "/",
         element: <LandingPageComplete />,
       },
+      { path: "/dashboard-user", element: <HomeDashboard /> },
+      { path: "/chat", element: <ChatPage /> },
       {
         path: "/movies",
         element: <MoviesDiscovery />,
@@ -47,7 +52,7 @@ const router = createBrowserRouter([
       {
         path: "/auth/register",
         element: <RegisterPage />,
-      }
+      },
     ],
   },
   {
