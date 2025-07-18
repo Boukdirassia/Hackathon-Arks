@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import axios from 'axios';
+import api from '../lib/axios';
 
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
@@ -20,7 +20,7 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await api.post('/chat', {
         message: input
       });
 

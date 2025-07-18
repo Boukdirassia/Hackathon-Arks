@@ -1,6 +1,19 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+/**
+ * Simplified Auth Middleware for MoBoe - No Database Required
+ * Perfect for jury presentations!
+ */
 
+import jwt from 'jsonwebtoken';
+
+// Simple JWT secret for demo purposes
+const JWT_SECRET = process.env.JWT_SECRET || 'moboe-demo-secret-key';
+
+/**
+ * Protect middleware - validates JWT tokens
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next function
+ */
 const protect = async (req, res, next) => {
     let token;
 
@@ -10,18 +23,30 @@ const protect = async (req, res, next) => {
             token = req.headers.authorization.split(' ')[1];
 
             // Verify token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const decoded = jwt.verify(token, JWT_SECRET);
 
-            // Get user from token
-            req.user = await User.findById(decoded.id).select('-password');
+            // For demo purposes, just attach the decoded user info
+            // In a real app, you would fetch the user from database
+            req.user = {
+                id: decoded.id,
+                // Add any other user info you need
+            };
+
+            console.log(`🔐 Token verified for user: ${decoded.id}`);
             next();
         } catch (error) {
-            res.status(401).json({ message: 'Not authorized, token failed' });
+            console.error('❌ Token verification failed:', error.message);
+            res.status(401).json({ 
+                message: 'Not authorized, token failed',
+                success: false 
+            });
         }
-    }
-
-    if (!token) {
-        res.status(401).json({ message: 'Not authorized, no token' });
+    } else {
+        console.error('❌ No token provided');
+        res.status(401).json({ 
+            message: 'Not authorized, no token provided',
+            success: false 
+        });
     }
 };
 
