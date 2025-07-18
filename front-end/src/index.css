@@ -54,6 +54,119 @@
   animation: slideInUp 0.8s ease-out;
 }
 
+/* Advanced 3D Genre Card Animations */
+@keyframes genreCardFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% { 
+    transform: translateY(-8px) rotateX(2deg);
+  }
+}
+
+@keyframes genreGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(239, 68, 68, 0.3),
+      0 0 40px rgba(239, 68, 68, 0.1),
+      inset 0 0 20px rgba(239, 68, 68, 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 0 40px rgba(239, 68, 68, 0.6),
+      0 0 80px rgba(239, 68, 68, 0.3),
+      inset 0 0 30px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@keyframes iconRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(5deg) scale(1.05); }
+  50% { transform: rotate(0deg) scale(1.1); }
+  75% { transform: rotate(-5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translateY(-10px) translateX(5px) rotate(90deg);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: translateY(-5px) translateX(-3px) rotate(180deg);
+    opacity: 1;
+  }
+  75% { 
+    transform: translateY(-15px) translateX(8px) rotate(270deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% { 
+    border-color: rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% { 
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+  50% { 
+    text-shadow: 
+      0 0 20px rgba(239, 68, 68, 0.6),
+      0 0 30px rgba(239, 68, 68, 0.4),
+      0 0 40px rgba(239, 68, 68, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0;
+  }
+  100% { 
+    background-position: 200% 0;
+  }
+}
+
+/* Animation utility classes */
+.animate-genre-float {
+  animation: genreCardFloat 4s ease-in-out infinite;
+}
+
+.animate-genre-glow {
+  animation: genreGlow 3s ease-in-out infinite;
+}
+
+.animate-icon-rotate {
+  animation: iconRotate 2s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+.animate-border-pulse {
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+.animate-text-glow {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+}
+
 /* Line clamp utilities */
 .line-clamp-1 {
   overflow: hidden;

@@ -4,65 +4,50 @@ import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
 import moviesData from '../data/movies.json';
 import { 
-  Play, Star, TrendingUp, Users, Film, Search, Heart, BookmarkPlus, 
-  Award, Zap, Globe, Mail, Twitter, Facebook, Instagram, ChevronRight,
-  Shield, Map
+  Play, Star, Film, Heart, Users, Mail, Twitter, Facebook, Instagram, Search, ChevronRight
 } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 /**
- * LandingPageComplete Component
+ * Landing Page Component - Page d'accueil de MoBoe
  * 
- * Main landing page for the MoBoe movie application featuring:
- * - Hero section with video background
- * - Popular movies showcase
- * - Genre exploration section with real statistics
- * - User testimonials
- * - Pricing plans
- * - Footer with navigation links
- * 
- * @component
- * @returns {JSX.Element} The complete landing page
+ * Fonctionnalités principales :
+ * - Section héro avec vidéo
+ * - Films populaires
+ * - Genres de films
+ * - Témoignages utilisateurs
  */
 const LandingPageComplete = () => {
-  // ==================== STATE MANAGEMENT ====================
-  
-  /**
-   * State to track if the background video has loaded
-   * @type {boolean}
-   */
+  // État pour gérer la vidéo de fond
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  // ==================== DATA PREPARATION ====================
-  
-  /**
-   * User testimonials data for the testimonials section
-   * @type {Array<Object>}
-   */
+  // Données des témoignages utilisateurs
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "Movie Enthusiast",
-      content: "MoBoe has completely changed how I discover movies. The recommendations are spot-on!",
+      content: "MoBoe has completely changed how I discover movies!",
       rating: 5,
       avatar: "SJ"
     },
     {
       name: "Mike Chen",
       role: "Film Critic",
-      content: "As a professional critic, I love the detailed analytics and community features.",
+      content: "Perfect for film critics and movie lovers.",
       rating: 5,
       avatar: "MC"
     },
     {
       name: "Emma Davis",
       role: "Casual Viewer",
-      content: "Finally, a platform that understands my taste in movies. Absolutely love it!",
+      content: "Finally, a platform that understands my taste!",
       rating: 5,
       avatar: "ED"
     }
   ];
 
-  // ==================== RENDER ====================
+  // Récupération des données d'authentification
+  const { user, loading, logout } = useAuth();
   
   return (
     <>
@@ -166,14 +151,14 @@ const LandingPageComplete = () => {
                     <Link to="/movies" className="group relative">
                       <div className="absolute inset-0 bg-red-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100"></div>
                       <div className="relative px-4 py-2 text-white/80 group-hover:text-white font-medium transition-all duration-300">
-                        Movies
+                        Movies List
                       </div>
                     </Link>
                     
                     <Link to="/watchlist" className="group relative">
                       <div className="absolute inset-0 bg-red-500/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100"></div>
                       <div className="relative px-4 py-2 text-white/80 group-hover:text-white font-medium transition-all duration-300">
-                        Watchlist
+                        My Space
                       </div>
                     </Link>
                     
@@ -199,13 +184,13 @@ const LandingPageComplete = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   
                   {/* Button Content */}
-                  <div className="relative flex items-center space-x-2">
+                  <div onClick={() => logout()} className="relative flex items-center space-x-2">
                     <div className="p-1 bg-white/20 rounded-full">
                       <Users className="h-3 w-3" />
                     </div>
-                    <span className="text-sm font-bold">Sign In</span>
+                    <span  className="text-sm font-bold">Sign out</span>
                   </div>
-                </Button>
+                </Button> 
               </div>
               
             </div>
@@ -282,103 +267,174 @@ const LandingPageComplete = () => {
         </div>
       </div>
 
+
+
       {/* ==================== GENRE EXPLORATION SECTION ==================== */}
-      <section className="relative py-20 bg-gradient-to-b from-red-950 to-black overflow-hidden">
-        {/* Background decorative elements */}
+      <section className="relative py-24 bg-gradient-to-b from-red-950 via-black to-red-900 overflow-hidden">
+        {/* Advanced Background Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-red-600/3 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-radial from-red-500/3 to-transparent rounded-full"></div>
+          {/* Animated mesh gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-transparent to-red-800/20 animate-pulse"></div>
+          
+          {/* Floating geometric shapes */}
+          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-red-500/10 to-red-600/5 rounded-full blur-2xl animate-float"></div>
+          <div className="absolute bottom-32 right-16 w-48 h-48 bg-gradient-to-tl from-red-400/8 to-red-700/4 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-red-600/10 rounded-full blur-xl animate-float" style={{animationDelay: '1.5s'}}></div>
+          
+          {/* Animated grid pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)',
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+          
+          {/* Floating particles */}
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-red-400/40 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 2}s`
+              }}
+            />
+          ))}
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-          {/* Header Section */}
+          {/* Enhanced Header Section */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-red-500/10 to-red-600/10 border border-red-500/20 mb-6">
-              <Film className="w-4 h-4 text-red-400 mr-2" />
-              <span className="text-red-400 text-sm font-medium tracking-wide">MOVIE CATEGORIES</span>
+            <div className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-red-500/20 via-red-600/15 to-red-500/20 border border-red-500/30 mb-8 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse mr-3"></div>
+              <Film className="w-5 h-5 text-red-400 mr-3 animate-pulse" />
+              <span className="text-red-300 text-sm font-bold tracking-widest uppercase">Cinematic Universe</span>
+              <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse ml-3"></div>
             </div>
-            <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            
+            <h2 className="text-6xl lg:text-7xl font-black text-white mb-8 leading-tight">
               Explore by{' '}
-              <span className="relative">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-red-600">
+              <span className="relative inline-block">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-300 via-red-500 to-red-700 animate-pulse">
                   Genre
                 </span>
-                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full opacity-30"></div>
+                <div className="absolute -bottom-4 left-0 right-0 h-2 bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-full opacity-50 blur-sm"></div>
+                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
               </span>
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Discover movies across all your favorite genres with our curated collection of{' '}
-              <span className="text-red-400 font-semibold">{moviesData.movies.length} premium movies</span>
+            
+            <p className="text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-4">
+              Immerse yourself in our{' '}
+              <span className="text-red-300 font-bold bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">
+                {moviesData.movies.length} handpicked movies
+              </span>
+              {' '}across every genre imaginable
             </p>
+            
+            <div className="flex justify-center items-center space-x-2 text-red-400/60">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-red-400/60"></div>
+              <div className="w-2 h-2 bg-red-400/60 rounded-full animate-pulse"></div>
+              <div className="w-16 h-px bg-red-400/60"></div>
+              <div className="w-2 h-2 bg-red-400/60 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-red-400/60"></div>
+            </div>
           </div>
           
-          {/* Genre Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-            {moviesData.genres.map((genre, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/60 via-red-950/30 to-black/80 backdrop-blur-xl border border-red-500/30 hover:border-red-400/60 transition-all duration-500 hover:scale-105 hover:-translate-y-1"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${genre.color} opacity-0 group-hover:opacity-40 transition-all duration-500`}></div>
-                
-                {/* Glow effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/0 group-hover:from-red-500/20 group-hover:via-red-500/10 group-hover:to-red-500/20 transition-all duration-500"></div>
-                
-                {/* Creative floating particles */}
-                <div className="absolute top-2 right-2 w-1 h-1 bg-red-400/60 rounded-full animate-ping group-hover:animate-bounce"></div>
-                <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-red-500/40 rounded-full animate-pulse group-hover:animate-spin"></div>
-                <div className="absolute top-1/2 left-1 w-0.5 h-0.5 bg-red-300/50 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-4 text-center">
-                  {/* Icon */}
-                  <div className="mb-3">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 group-hover:from-red-500/40 group-hover:to-red-600/40 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
-                      {(() => {
-                        const IconComponent = 
-                          genre.name === 'Action' ? Zap :
-                          genre.name === 'Drama' ? Heart :
-                          genre.name === 'Comedy' ? Star :
-                          genre.name === 'Thriller' ? Film :
-                          genre.name === 'Sci-Fi' ? Globe :
-                          genre.name === 'Romance' ? Heart :
-                          genre.name === 'Crime' ? Shield :
-                          genre.name === 'Adventure' ? Map : Film;
-                        return <IconComponent className="w-6 h-6 text-red-400 group-hover:text-red-300 group-hover:scale-110 transition-all duration-300" />;
-                      })()}
+          {/* Revolutionary Genre Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+            {moviesData.genres.map((genre, index) => {
+              // Genre-specific icons and colors
+              const genreConfig = {
+                'Action': { icon: '⚡', gradient: 'from-red-600 to-orange-600', shadow: 'shadow-red-500/50' },
+                'Drama': { icon: '🎭', gradient: 'from-red-500 to-purple-600', shadow: 'shadow-purple-500/50' },
+                'Sci-Fi': { icon: '🚀', gradient: 'from-red-400 to-blue-600', shadow: 'shadow-blue-500/50' },
+                'Crime': { icon: '🔫', gradient: 'from-red-700 to-gray-800', shadow: 'shadow-gray-500/50' },
+                'Thriller': { icon: '🔪', gradient: 'from-red-600 to-red-900', shadow: 'shadow-red-600/50' },
+                'Adventure': { icon: '🗺️', gradient: 'from-red-500 to-green-600', shadow: 'shadow-green-500/50' },
+                'Romance': { icon: '💕', gradient: 'from-red-400 to-pink-600', shadow: 'shadow-pink-500/50' },
+                'Comedy': { icon: '😂', gradient: 'from-red-400 to-yellow-500', shadow: 'shadow-yellow-500/50' }
+              };
+              
+              const config = genreConfig[genre.name] || { icon: '🎬', gradient: 'from-red-500 to-red-700', shadow: 'shadow-red-500/50' };
+              
+              return (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-3xl transition-all duration-500 hover:scale-110 hover:-translate-y-2"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {/* 3D Card Container */}
+                  <div className="relative h-48 bg-gradient-to-br from-black/80 via-red-950/60 to-black/90 backdrop-blur-sm border border-red-500/30 rounded-3xl overflow-hidden group-hover:border-red-400/60 transition-all duration-500">
+                    
+                    {/* Animated background gradient */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${config.gradient} opacity-0 group-hover:opacity-20 transition-all duration-500`}></div>
+                    
+                    {/* Glow effect */}
+                    <div className={`absolute -inset-1 bg-gradient-to-br ${config.gradient} opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500 ${config.shadow}`}></div>
+                    
+                    {/* Floating particles inside card */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-1 h-1 bg-red-400/30 rounded-full animate-float opacity-0 group-hover:opacity-100 transition-all duration-700"
+                          style={{
+                            left: `${20 + Math.random() * 60}%`,
+                            top: `${20 + Math.random() * 60}%`,
+                            animationDelay: `${Math.random() * 2}s`,
+                            animationDuration: `${2 + Math.random()}s`
+                          }}
+                        />
+                      ))}
                     </div>
-                  </div>
-                  
-                  {/* Genre name */}
-                  <h3 className="text-sm font-bold text-white mb-2 group-hover:text-red-300 transition-colors duration-300 truncate">
-                    {genre.name}
-                  </h3>
-                  
-                  {/* Count with creative design */}
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-red-500/10 rounded-full blur-sm group-hover:bg-red-500/20 transition-all duration-300"></div>
-                    <div className="relative bg-black/40 rounded-full px-3 py-1 border border-red-500/30 group-hover:border-red-400/50 transition-all duration-300">
-                      <p className="text-red-400 font-semibold text-xs">
-                        {genre.count}
-                      </p>
+                    
+                    {/* Card Content */}
+                    <div className="relative z-10 h-full flex flex-col items-center justify-center p-6 text-center">
+                      
+                      {/* Genre Icon with 3D effect */}
+                      <div className="mb-4 relative">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/20 to-red-600/40 backdrop-blur-sm border border-red-400/30 flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 group-hover:shadow-2xl">
+                          <span className="text-2xl filter drop-shadow-lg group-hover:drop-shadow-2xl transition-all duration-500">
+                            {config.icon}
+                          </span>
+                        </div>
+                        
+                        {/* Rotating ring */}
+                        <div className="absolute inset-0 rounded-2xl border-2 border-red-400/20 group-hover:border-red-300/60 group-hover:rotate-180 transition-all duration-1000"></div>
+                      </div>
+                      
+                      {/* Genre Name */}
+                      <h3 className="text-xl font-black text-white mb-3 group-hover:text-red-200 transition-all duration-300 tracking-wide">
+                        {genre.name}
+                      </h3>
+                      
+                      {/* Movie Count with enhanced styling */}
+                      <div className="relative">
+                        <div className="bg-gradient-to-r from-black/60 via-red-950/40 to-black/60 backdrop-blur-sm rounded-full px-4 py-2 border border-red-500/40 group-hover:border-red-400/70 transition-all duration-300">
+                          <p className="text-red-300 font-bold text-sm tracking-wider">
+                            <span className="text-red-400 text-lg font-black">{genre.count}</span> films
+                          </p>
+                        </div>
+                        
+                        {/* Pulse effect */}
+                        <div className="absolute inset-0 rounded-full bg-red-500/20 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 blur-sm"></div>
+                      </div>
+                      
+                      {/* Hover arrow indicator */}
+                      <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <ChevronRight className="w-5 h-5 text-red-400" />
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Mini progress indicator */}
-                  <div className="mt-2 flex justify-center">
-                    <div className="w-8 h-1 bg-white/10 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-red-500 to-red-600 rounded-full transition-all duration-1000 group-hover:from-red-400 group-hover:to-red-500"
-                        style={{ width: `${(genre.count / Math.max(...moviesData.genres.map(g => g.count))) * 100}%` }}
-                      ></div>
-                    </div>
+                    
+                    {/* Corner accents */}
+                    <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-red-400/40 group-hover:border-red-300/80 transition-all duration-300"></div>
+                    <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-red-400/40 group-hover:border-red-300/80 transition-all duration-300"></div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           
           {/* Call to action */}

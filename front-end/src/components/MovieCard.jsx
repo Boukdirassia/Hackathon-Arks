@@ -78,29 +78,52 @@ const MovieCard = ({ movie, size = 'default', showOverview = false, disableLink 
       bg-gradient-to-br from-black via-red-950 to-black
       transition-all duration-500 hover:scale-105
       shadow-lg hover:shadow-2xl hover:shadow-red-500/20
-      ${disableLink ? '' : 'cursor-pointer'}
       ${currentSize.width} ${currentSize.height}
     `}>
       
+      {/* Movie Poster - Clickable area */}
       <div className="relative h-3/5 overflow-hidden rounded-t-2xl">
-        {!imageError ? (
-          <img
-            src={movie.poster}
-            alt={`${movie.title} poster`}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            onError={handleImageError}
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-red-900 via-red-950 to-black flex items-center justify-center">
-            <div className="text-center p-4">
-              <div className="text-6xl mb-4 text-red-500/60">🎬</div>
-              <h3 className="text-white font-bold text-lg leading-tight">{movie.title}</h3>
-              <p className="text-red-300 text-sm mt-2">{movie.year}</p>
-            </div>
+        {disableLink ? (
+          <div className="w-full h-full">
+            {!imageError ? (
+              <img
+                src={movie.poster}
+                alt={`${movie.title} poster`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={handleImageError}
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-red-900 via-red-950 to-black flex items-center justify-center">
+                <div className="text-center p-4">
+                  <div className="text-6xl mb-4 text-red-500/60">🎬</div>
+                  <h3 className="text-white font-bold text-lg leading-tight">{movie.title}</h3>
+                  <p className="text-red-300 text-sm mt-2">{movie.year}</p>
+                </div>
+              </div>
+            )}
           </div>
+        ) : (
+          <Link to={`/movie/${movie.id}`} className="block w-full h-full">
+            {!imageError ? (
+              <img
+                src={movie.poster}
+                alt={`${movie.title} poster`}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
+                onError={handleImageError}
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-red-900 via-red-950 to-black flex items-center justify-center cursor-pointer">
+                <div className="text-center p-4">
+                  <div className="text-6xl mb-4 text-red-500/60">🎬</div>
+                  <h3 className="text-white font-bold text-lg leading-tight">{movie.title}</h3>
+                  <p className="text-red-300 text-sm mt-2">{movie.year}</p>
+                </div>
+              </div>
+            )}
+          </Link>
         )}
         
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-red-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-red-950/20 to-transparent pointer-events-none" />
         
         <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-red-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button 
@@ -173,13 +196,25 @@ const MovieCard = ({ movie, size = 'default', showOverview = false, disableLink 
 
       <div className="h-2/5 p-4 flex flex-col justify-between">
         <div className="mb-2">
-          <h3 className="
-            text-white font-bold text-lg leading-tight
-            line-clamp-1 group-hover:text-red-400
-            transition-colors duration-300
-          ">
-            {movie.title}
-          </h3>
+          {disableLink ? (
+            <h3 className="
+              text-white font-bold text-lg leading-tight
+              line-clamp-1 group-hover:text-red-400
+              transition-colors duration-300
+            ">
+              {movie.title}
+            </h3>
+          ) : (
+            <Link to={`/movie/${movie.id}`} className="block">
+              <h3 className="
+                text-white font-bold text-lg leading-tight
+                line-clamp-1 group-hover:text-red-400
+                transition-colors duration-300 cursor-pointer
+              ">
+                {movie.title}
+              </h3>
+            </Link>
+          )}
           <p className="text-red-300 text-sm font-medium mt-1">
             {movie.year}
           </p>
@@ -238,11 +273,7 @@ const MovieCard = ({ movie, size = 'default', showOverview = false, disableLink 
     </div>
   );
 
-  return disableLink ? cardContent : (
-    <Link to={`/movie/${movie.id}`} className="block">
-      {cardContent}
-    </Link>
-  );
+  return cardContent;
 };
 
 export default MovieCard;

@@ -394,7 +394,7 @@ const Watchlist = () => {
               Back to Home
             </Link>
             <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
-              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Collections</span>
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-400">Space</span>
             </h1>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
               Manage your personal movie collections and track your cinematic journey
